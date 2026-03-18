@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Your Cart</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+
+<h1 class="logo">TechStore</h1>
+
+<nav>
+<a href="products.html">Products</a>
+<a href="cart.html">Cart</a>
+<!-- <a href="admin.html">Admin</a> -->
+</nav>
+
+</header>
+
+<h2>Your Cart</h2>
+
+<div class="cart-container" id="cart"></div>
+
+<div id="cart"></div>
+
+<script>
+
+fetch("http://localhost:3000/cart/1")
+.then(res => res.json())
+.then(data => {
+
+const container = document.getElementById("cart");
+
+data.forEach(item => {
+
+const row = document.createElement("div");
+row.className = "cart-item";
+
+row.innerHTML = `
+<div class="cart-box">
+
+<button class="remove-btn" onclick="removeItem(${item.id})">✖</button>
+
+<img src="${item.image}" class="cart-img">
+
+<div>
+<p><b>Product:</b> ${item.name}</p>
+<p><b>Price:</b> ₹${item.price}</p>
+<p><b>Quantity:</b> ${item.quantity}</p>
+
+<button onclick="placeOrder(${item.product_id})">Place Order</button>
+</div>
+
+
+</div>
+`;
+
+container.appendChild(row);
+
+});
+
+});
+function placeOrder(cartId){
+
+fetch("http://localhost:3000/order",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body: JSON.stringify({
+cart_id: cartId
+})
+
+})
+.then(res => res.text())
+.then(data => alert(data))
+
+}
+
+function removeItem(id){
+
+fetch(`http://localhost:3000/cart/${id}`, {
+    method: "DELETE"
+})
+.then(res => res.text())
+.then(data => {
+    alert(data);
+    location.reload();
+});
+
+}
+
+
+
+</script>
+
+</body>
+</html>

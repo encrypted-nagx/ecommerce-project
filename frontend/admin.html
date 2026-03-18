@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+    if(localStorage.getItem("admin") !== "true"){
+    window.location.href = "admin-login.html";
+}
+</script>
+<title>Admin Panel</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="navbar">
+    <div class="logo">TechStore</div>
+    <div class="nav-links">
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+        <a href="admin.html">Admin</a>
+    </div>
+</div>
+
+<body class="admin-page"></body>
+
+<div class="admin-container">
+
+    <h1>Add Product</h1>
+
+    <input type="text" id="image" placeholder="Image URL" oninput="previewImage()">
+    <input type="text" id="name" placeholder="Product Name">
+    <input type="number" id="price" placeholder="Price">
+    <input type="text" id="description" placeholder="Description">
+    
+
+    <img id="preview" style="width:100%; height:180px; object-fit:cover; border-radius:10px; margin-top:10px; display:none;">
+
+    <button onclick="addProduct()">Add Product</button>
+
+    <h3>Orders</h3>
+    <div id="orders"></div>
+
+    <p id="successMsg" style="color:white; margin-top:10px; display:none;">
+     Product added successfully ✅
+    </p>
+</div>
+
+
+<script>
+
+function addProduct(){
+
+const name = document.getElementById("name").value;
+const price = document.getElementById("price").value;
+const description = document.getElementById("description").value;
+const image = document.getElementById("image").value;
+
+fetch("http://localhost:3000/products", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        name: name,
+        price: price,
+        description: description,
+        image: image
+    })
+})
+.then(res => res.text())
+.then(data => {
+
+    // ✅ show success message
+    document.getElementById("successMsg").style.display = "block";
+
+    setTimeout(() => {
+    document.getElementById("successMsg").style.display = "none";
+    }, 3000);
+
+    // ✅ clear inputs
+    document.getElementById("name").value = "";
+    document.getElementById("price").value = "";
+    document.getElementById("description").value = "";
+    document.getElementById("image").value = "";
+
+    // ✅ hide preview
+    document.getElementById("preview").style.display = "none";
+
+});
+}
+
+function previewImage(){
+    const url = document.getElementById("image").value;
+    const img = document.getElementById("preview");
+
+    if(url){
+        img.src = url;
+        img.style.display = "block";
+    } else {
+        img.style.display = "none";
+    }
+}
+
+function loadOrders(){
+
+    fetch("http://localhost:3000/orders")
+    .then(res => res.json())
+    .then(data => {
+
+        const container = document.getElementById("orders");
+        container.innerHTML = "";
+
+        data.forEach(order => {
+
+            const item = document.createElement("div");
+
+            item.innerHTML = `
+                <p><b>User ID:</b> ${order.user_id}</p>
+                <p><b>Product ID:</b> ${order.product_id}</p>
+                <p><b>Quantity:</b> ${order.quantity}</p>
+                <hr>
+            `;
+
+            container.appendChild(item);
+        });
+
+    });
+}
+
+loadOrders();
+
+</script>
+
+</body>
+
+</html>
