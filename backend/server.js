@@ -23,7 +23,7 @@ app.listen(3000, () => {
 // DATABASE CONNECTION
 //=====================================================
 const db = mysql.createConnection({
-  host: "mysql.railway.internal",
+  host: "mysql://root:XVsqsXJkOVUIgGLUmTCQqEJUISUpBxYX@tramway.proxy.rlwy.net:36099/railway",
   user: "root",
   password: "XVsqsXJkOVUIgGLUmTCQqEJUISUpBxYX",
   database: "railway"
