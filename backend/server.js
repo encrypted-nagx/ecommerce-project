@@ -22,18 +22,15 @@ app.listen(3000, () => {
 //=====================================================
 // DATABASE CONNECTION
 //=====================================================
-const db = mysql.createConnection({
-  host: "mysql://root:XVsqsXJkOVUIgGLUmTCQqEJUISUpBxYX@tramway.proxy.rlwy.net:36099/railway",
+const db = mysql.createPool({
+  host: "tramway.proxy.rlwy.net",
   user: "root",
   password: "XVsqsXJkOVUIgGLUmTCQqEJUISUpBxYX",
-  database: "railway"
-});
-db.connect((err) => {
-  if (err) {
-    console.log("Database connection failed");
-  } else {
-    console.log("Connected to MySQL database");
-  }
+  database: "railway",
+  port: "3306",
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
 //=====================================================
