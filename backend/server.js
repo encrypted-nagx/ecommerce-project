@@ -296,3 +296,14 @@ res.send("Product added successfully");
 
 });
 });
+
+app.get("/test-db", (req, res) => {
+  db.query("SELECT 1", (err, result) => {
+    if (err) {
+      console.log(err);
+      res.send(err);
+    } else {
+      res.send("DB Working ✅");
+    }
+  });
+});
