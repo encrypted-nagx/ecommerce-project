@@ -74,6 +74,7 @@ app.post("/register", (req, res) => {
 app.get("/products", (req, res) => {
   db.query("SELECT * FROM products", (err, result) => {
     if (err) {
+      console.log(err)
       res.send("Error fetching products");
     } else {
       res.json(result);
