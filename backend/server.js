@@ -23,10 +23,10 @@ app.listen(3000, () => {
 // DATABASE CONNECTION
 //=====================================================
 const db = mysql.createConnection({
-  host: "localhost",
+  host: "mysql.railway.internal",
   user: "root",
-  password: "root123",
-  database: "ecommerce"
+  password: "XVsqsXJkOVUIgGLUmTCQqEJUISUpBxYX",
+  database: "railway"
 });
 db.connect((err) => {
   if (err) {

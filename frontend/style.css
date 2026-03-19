@@ -422,3 +422,15 @@ color:#DC2626;
     border-radius:10px;
     margin-bottom:10px;
 }
+
+#admin-link a {
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+#admin-link a:hover {
+  text-decoration: underline;
+}

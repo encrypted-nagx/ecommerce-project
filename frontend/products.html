@@ -76,10 +76,17 @@ quantity: 1
 
 }
 
+
+  if (window.location.hostname.includes("vercel.app")) {
+    document.getElementById("admin-link").style.display = "block";
+  }
+
+
 </script>
 
 <footer class="site-footer">
-<p>© 2026 TechStore | Built for Internship Project</p>
+<p>© 2026 TechStore | Built for Internship Project</p> <a href="admin-login.html" class="admin-link">Admin</a>
+</p>
 </footer>
 
 </body>
