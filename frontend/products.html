@@ -27,7 +27,7 @@
 
 <script>
 
-fetch("http://localhost:3000/products")
+fetch("https://ecommerce-backend-gf0i.onrender.com/products")
 .then(res => res.json())
 .then(data => {
 
@@ -57,7 +57,7 @@ container.appendChild(item);
 //function to add to cart
 function addToCart(productId){
 
-fetch("http://localhost:3000/cart", {
+fetch("https://ecommerce-backend-gf0i.onrender.com/cart", {
 
 method: "POST",
 headers: {
@@ -74,13 +74,8 @@ quantity: 1
 .then(res => res.text())
 .then(data => alert(data))
 
+
 }
-
-
-  if (window.location.hostname.includes("vercel.app")) {
-    document.getElementById("admin-link").style.display = "block";
-  }
-
 
 </script>
 
