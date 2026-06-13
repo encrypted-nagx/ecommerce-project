@@ -104,7 +104,8 @@ app.post("/cart", (req, res) => {
 
   db.query(sql, [user_id, product_id, quantity], (err, result) => {
     if (err) {
-      res.send("Error adding to cart");
+      console.log(err);
+      res.send(err.sqlMessage);
     } else {
       res.send("Product added to cart");
     }
