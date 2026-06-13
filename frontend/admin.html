@@ -57,7 +57,7 @@ const price = document.getElementById("price").value;
 const description = document.getElementById("description").value;
 const image = document.getElementById("image").value;
 
-fetch("http://localhost:3000/products", {
+fetch("https://ecommerce-backend-gf0i.onrender.com/products", {
     method: "POST",
     headers: {
         "Content-Type": "application/json"
@@ -72,20 +72,18 @@ fetch("http://localhost:3000/products", {
 .then(res => res.text())
 .then(data => {
 
-    // ✅ show success message
+    
     document.getElementById("successMsg").style.display = "block";
 
     setTimeout(() => {
     document.getElementById("successMsg").style.display = "none";
     }, 3000);
-
-    // ✅ clear inputs
+    
     document.getElementById("name").value = "";
     document.getElementById("price").value = "";
     document.getElementById("description").value = "";
     document.getElementById("image").value = "";
 
-    // ✅ hide preview
     document.getElementById("preview").style.display = "none";
 
 });
@@ -105,7 +103,7 @@ function previewImage(){
 
 function loadOrders(){
 
-    fetch("http://localhost:3000/orders")
+    fetch("https://ecommerce-backend-gf0i.onrender.com/orders")
     .then(res => res.json())
     .then(data => {
 
