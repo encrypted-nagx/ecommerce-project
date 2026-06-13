@@ -23,11 +23,11 @@ app.listen(PORT , () => {
 // DATABASE CONNECTION
 //=====================================================
 const db = mysql.createPool({
-  host: "tramway.proxy.rlwy.net",
-  user: "root",
-  password: "XVsqsXJkOVUIgGLUmTCQqEJUISUpBxYX",
-  database: "railway",
-  port: 36099,
+  host: "btgdklmblr95zgyxqepq-mysql.services.clever-cloud.com",
+  user: "uvfmoaswdckcgoyp",
+  password: "vyHD4sPf1zhiSZNtYuC6",
+  database:"btgdklmblr95zgyxqepq",
+  port: 3306,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
