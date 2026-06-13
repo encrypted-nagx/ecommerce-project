@@ -24,11 +24,11 @@
 
 <div class="cart-container" id="cart"></div>
 
-<div id="cart"></div>
+
 
 <script>
 
-fetch("http://localhost:3000/cart/1")
+fetch("https://ecommerce-backend-gf0i.onrender.com/cart/1")
 .then(res => res.json())
 .then(data => {
 
@@ -65,7 +65,7 @@ container.appendChild(row);
 });
 function placeOrder(cartId){
 
-fetch("http://localhost:3000/order",{
+fetch("https://ecommerce-backend-gf0i.onrender.com/order",{
 
 method:"POST",
 
@@ -85,7 +85,7 @@ cart_id: cartId
 
 function removeItem(id){
 
-fetch(`http://localhost:3000/cart/${id}`, {
+fetch(`https://ecommerce-backend-gf0i.onrender.com/cart/${id}`, {
     method: "DELETE"
 })
 .then(res => res.text())
