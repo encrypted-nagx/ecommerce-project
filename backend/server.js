@@ -5,7 +5,7 @@ const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
 
-const app = express();   // ← THIS LINE IS MISSING
+const app = express();   
 app.use(cors());
 app.use(express.json());
 
@@ -181,7 +181,7 @@ app.get("/orders", (req, res) => {
 //for add to cart
 function addToCart(productId){
 
-fetch("http://localhost:3000/cart", {
+fetch("https://ecommerce-backend-gf0i.onrender.com/cart", {
 
 method: "POST",
 headers: {
@@ -203,7 +203,7 @@ quantity: 1
 //function for placeorder button
 function placeOrder(cartId){
 
-fetch("http://localhost:3000/order",{
+fetch("https://ecommerce-backend-gf0i.onrender.com/order", {
 
 method:"POST",
 
