@@ -80,17 +80,27 @@ app.get("/products", (req, res) => {
 });
 // ADD NEW PRODUCT
 app.post("/products", (req, res) => {
-  const { name, price, description, stock } = req.body;
 
-  const sql = "INSERT INTO products (name, price, description, stock) VALUES (?, ?, ?, ?)";
+  const { name, price, description, stock, image } = req.body;
 
-  db.query(sql, [name, price, description, stock], (err, result) => {
-    if (err) {
-      res.send("Error inserting product");
-    } else {
-      res.send("Product added successfully");
+  const sql =
+  "INSERT INTO products (name, price, description, stock, image) VALUES (?, ?, ?, ?, ?)";
+
+  db.query(
+    sql,
+    [name, price, description, stock, image],
+    (err, result) => {
+
+      if (err) {
+        console.log(err);
+        res.send("Error inserting product");
+      } else {
+        res.send("Product added successfully");
+      }
+
     }
-  });
+  );
+
 });
 //=====================================================
 //CART API
